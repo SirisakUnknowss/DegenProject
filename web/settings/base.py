@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,6 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Module
+    'rest_framework',
+    'django_filters',
+    'import_export',
+    # Project
+    'base.apps.BaseConfig',
 ]
 
 MIDDLEWARE = [
@@ -51,10 +58,21 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'degenGame.urls'
 
+STATIC_URL = '/static/'
+STATIC = os.path.join(BASE_DIR, "static")
+#Additional staticfiles, assets in this case.
+STATICFILES_DIRS = [
+    os.path.join(STATIC, "assets"),
+]
+STATIC_ROOT = os.path.join(STATIC, "staticfiles")
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(STATIC, "media")
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ 
+            os.path.join(STATIC, 'templates'), 
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -62,6 +80,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
             ],
         },
     },

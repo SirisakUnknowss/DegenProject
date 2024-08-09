@@ -1,0 +1,14 @@
+/* .main {
+    background-image: url('/static/images/bg.png');
+    background-color: #100225;
+    background-size:     cover;
+    background-repeat:   no-repeat;
+    background-position: center center; 
+   } */
+
+body {
+    background-image: url('/static/images/bg.png');
+    background-color: #100225;
+    background-size: 100vw 100vh;
+    background-repeat: no-repeat;
+}
